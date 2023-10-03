@@ -6,11 +6,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+import WelcomePage from './pages/WelcomePage/WelcomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <WelcomePage></WelcomePage>,
   },
 ]);
 
