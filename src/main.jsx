@@ -7,12 +7,17 @@ import {
 } from "react-router-dom";
 import './index.css'
 import WelcomePage from './pages/WelcomePage/WelcomePage';
+import App from './pages/App/App';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <WelcomePage></WelcomePage>,
   },
+  {
+    path:'/app',
+    element:<App></App>
+  }
 ]);
 
 
