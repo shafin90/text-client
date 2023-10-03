@@ -1,3 +1,4 @@
+// This component contains profile picture and a menu-bar
 import {GiHamburgerMenu} from 'react-icons/gi'
 
 const ProfileAndMenu = () => {
