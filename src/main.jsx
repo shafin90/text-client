@@ -8,6 +8,7 @@ import {
 import './index.css'
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import App from './pages/App/App';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path:'/app',
     element:<App></App>
+  },
+  {
+    path:'/registration',
+    element:<RegistrationPage></RegistrationPage>
   }
 ]);
 

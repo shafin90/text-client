@@ -2,10 +2,14 @@
 // "Text" will arise when the app is open
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {
     // Position of "Text"
     const [textPos, setTextPos] = useState(600);
+
+    // declaring useNavigate hook
+    const navigate = useNavigate();
 
     // style for text
     const style = {
@@ -17,6 +21,13 @@ const WelcomePage = () => {
     setTimeout(()=>{
         setTextPos(0)
     },300)
+
+    // redirecting to app page
+    setTimeout(()=>{
+        navigate('../App')
+    },1800)
+
+
 
     return (
         <div className=" bg-slate-300 w-full h-screen flex justify-center items-center overflow-hidden">
