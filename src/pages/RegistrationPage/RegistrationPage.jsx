@@ -1,18 +1,22 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const RegistrationPage = () => {
-    const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration } = useContext(authContext);
+    const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration, userinfo } = useContext(authContext);
     
-    const handleImageChange = (e) => {
-        const file = e.target.files[0]; // Get the selected file
-        setImg(file); // Set the selected image in the state
-    };
+    const navigate = useNavigate(); // Initialize the useNavigate hook
+
+    // Navigate user to application page when registration is done
+    if(userinfo!==null){
+        navigate('./app');
+    }
+
+
     
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
-            <div className="bg-gray-100 p-8 rounded shadow-md w-96">
+            <div className="bg-gray-100 p-8 rounded shadow-md w-96 my-24">
                 <h2 className="text-2xl font-semibold mb-4">Registration</h2>
                 <form onSubmit={handleRegistration}>
                     <div className="mb-4">
@@ -71,7 +75,7 @@ const RegistrationPage = () => {
                             type="file"
                             name="image"
                             accept="image/*"
-                            onChange={handleImageChange}
+                            
                             className="w-full border border-gray-300 rounded px-3 py-2"
                         />
 

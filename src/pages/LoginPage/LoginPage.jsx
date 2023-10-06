@@ -1,13 +1,20 @@
 import { useContext, useState } from 'react';
 import { AiOutlineGoogle } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const LoginPage = () => {
-    const { setEmail, setPassword, handleLogin, handleGoogle } = useContext(authContext);
+    const { setEmail, setPassword, handleLogin, handleGoogle, userinfo } = useContext(authContext);
 
+    // Initialize the useNavigation Hook.
+    const navigate = useNavigate();
 
-
+    // Redirect to the app page as login is done.
+    if (userinfo !== null) {
+        navigate('./app')
+    }
+    
+    console.log(userinfo)
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
             <div className="bg-gray-100 p-8 rounded shadow-md w-96">
@@ -44,7 +51,7 @@ const LoginPage = () => {
                 </form>
                 <div className="mt-4">
                     <button
-                        
+
                         onClick={handleGoogle}
 
                         className="w-full bg-blue-500 text-white font-semibold rounded py-2 hover:bg-blue-600 transition-all flex justify-center items-center"

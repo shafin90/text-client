@@ -24,7 +24,7 @@ const WelcomePage = () => {
 
     // redirecting to app page
     setTimeout(()=>{
-        navigate('../App')
+        navigate('/login')
     },1800)
 
 
