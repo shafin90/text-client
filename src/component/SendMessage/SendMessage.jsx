@@ -1,12 +1,32 @@
 // This component contain input field to send message
 
+import { useContext, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri'
+import { authContext } from '../AuthProvider/AuthProvider';
 
 const SendMessage = () => {
+    const { to, loggedInUserInfo } = useContext(authContext); // recieving data from authprovider through context API
+
+    // state declaration
+    const [text, setText] = useState('');
+
+    // send the message
+    const sendMessage = () => {
+        fetch('http://localhost:5000/messages', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ from: loggedInUserInfo.email, to: to.email, message: text })
+        })
+            .then(res => res.json())
+            .then(data => setText(''))
+
+    }
     return (
-        <div className='flex justify-center items-center w-full  h-16'>
-            <input type="text" className="rounded-md py-2 px-4 border w-8/12 border-gray-300 focus:outline-none" placeholder="Enter your message..." />
-            <RiSendPlane2Fill className=' text-2xl ms-2 cursor-pointer'></RiSendPlane2Fill>
+        <div className={to == null ? ' hidden' : 'flex justify-center items-center w-full  h-16'}>
+            <input onChange={e => setText(e.target.value)} type="text" value={text} placeholder="Enter your message" className="rounded-md py-2 px-4 border w-8/12 border-gray-300 focus:outline-none"  />
+            <RiSendPlane2Fill onClick={sendMessage} className=' text-2xl ms-2 cursor-pointer'></RiSendPlane2Fill>
         </div>
     );
 };

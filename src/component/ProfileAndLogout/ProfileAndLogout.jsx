@@ -5,7 +5,7 @@ import { authContext } from '../AuthProvider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 const ProfileAndLogout = () => {
-    const { handleLogOut, logOutConfirm } = useContext(authContext);
+    const { handleLogOut, logOutConfirm, loggedInUserInfo } = useContext(authContext);
 
     // Initialize useNavigate Hook.
     const navigate = useNavigate();
@@ -17,8 +17,11 @@ const ProfileAndLogout = () => {
 
     return (
         <div className=' flex justify-between items-center w-10/12 mx-auto  relative bottom-4 '>
-            {/* Profile image of loggedIN user */}
-            <img src="" alt="profile-pic" className=" w-9 h-9 rounded-full  border-2 border-white" />
+            {/* Profile image of loggedIN user and user's name */}
+            <div className=' flex justify-between items-center'>
+                <img src={loggedInUserInfo?.img} alt="profile-pic" className=" w-9 h-9 rounded-full  border-2 border-white" />
+                <p className=' text-slate-300 ms-3'>{loggedInUserInfo?.name}</p>
+            </div>
 
             {/* logout button */}
             <button className=' hover:bg-red-800 p-2 rounded-md' onClick={handleLogOut}>

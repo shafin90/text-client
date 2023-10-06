@@ -4,16 +4,16 @@ import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const RegistrationPage = () => {
     const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration, userinfo } = useContext(authContext);
-    
+
     const navigate = useNavigate(); // Initialize the useNavigate hook
 
     // Navigate user to application page when registration is done
-    if(userinfo!==null){
+    if (userinfo !== null) {
         navigate('./app');
     }
 
 
-    
+
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
             <div className="bg-gray-100 p-8 rounded shadow-md w-96 my-24">
@@ -70,12 +70,11 @@ const RegistrationPage = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-semibold">Image</label>
+                        <label className="block text-gray-700 font-semibold">PhotoURL:</label>
                         <input
-                            type="file"
+                            type="text"
                             name="image"
-                            accept="image/*"
-                            
+                            onChange={e => setImg(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                         />
 

@@ -18,26 +18,40 @@ const AuthProvider = ({ children }) => {
     const [number, setNumber] = useState(null); // user's phone number
     const [loggedInUserInfo, setLoggedInUserInfo] = useState(null) // store loggedInUser's informartion
     const [userCollection, setUserCollection] = useState([]) // collection of all user's
+    const [to, setTo] = useState(null)// to whom user send message
+    const [messages, setMessages] = useState([]) // All conversation and messages
+    const [counter, setCounter] = useState(true)// It containes a boolean value. This will change over the time and keep the message state update tiem to time
+
+
 
     // Data fetching,filtering==================================================================================================
 
-    // set loggedIn user information.
+    // fetching all user collection
     useEffect(() => {
         // fetching
         fetch('http://localhost:5000/userInfo')
             .then(res => res.json())
             .then(data => setUserCollection(data))
-    }, [])
+    }, [userCollection])
 
+
+    // Finding the loggedIn user's information
     useEffect(() => {
-        // Finding the loggedIn user's information
         const loggedInUser = userCollection.find(e => e.email == userinfo?.email); // filtering data
         setLoggedInUserInfo(loggedInUser); // Set the loggedIn user's information
-        console.log(loggedInUser)
     }, [userCollection, setUserCollection, userinfo, setUserInfo])
 
+    // changing the value of counter over the time to update the messages state
+    setTimeout(()=>{
+        setCounter(!counter);
+    },300)
 
-    console.log(userinfo)
+    // Fetching all the converation
+    useEffect(() => {
+        fetch("http://localhost:5000/allMessages")
+            .then(res => res.json())
+            .then(data =>setMessages(data))
+    }, [counter])
 
     // Function declaration=============================================================================================
 
@@ -48,7 +62,6 @@ const AuthProvider = ({ children }) => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUserInfo(user);
-                
             })
             .catch((error) => {
                 console.log('something is wrong. try again')
@@ -66,7 +79,7 @@ const AuthProvider = ({ children }) => {
                 const token = credential.accessToken;
                 const user = result.user;
                 setUserInfo(user);
-               
+
             }).catch((error) => {
                 console.log("something wrong. Try again.")
             });
@@ -79,7 +92,7 @@ const AuthProvider = ({ children }) => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 setUserInfo(user);
-                
+
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -101,7 +114,7 @@ const AuthProvider = ({ children }) => {
         signOut(auth).then(() => {
             console.log('logout done');
             setUserInfo(null);
-        
+
         }).catch((error) => {
             console.log('logout cancel');
         });
@@ -134,7 +147,10 @@ const AuthProvider = ({ children }) => {
         handleRegistration,
         handleLogOut,
         userinfo,
-        userCollection
+        userCollection,
+        loggedInUserInfo,
+        to,
+        setTo,
     }
 
     return (
