@@ -5,11 +5,14 @@ import Conversation from "../Conversation/Conversation";
 import ProfileAndMenu from "../ProfileAndMenu/ProfileAndMenu";
 import SendMessage from "../SendMessage/SendMessage";
 import LetsChat from "../LetsChat/LetsChat";
+import { useState } from "react";
 
 
 const MessageSection = () => {
-        return (
-        <div className=" bg-slate-300 flex flex-col justify-between items-center w-9/12 h-screen">
+    const [screenWidth, setScreenWidth] = useState(screen.width); // measure the screen's width
+    
+    return (
+        <div className= {screenWidth>576?" bg-slate-300 flex flex-col justify-between items-center w-9/12 h-screen":" bg-slate-300 flex flex-col justify-between items-center w-screen h-screen"}>
             <ProfileAndMenu></ProfileAndMenu>
             <Conversation></Conversation>
             <SendMessage></SendMessage>

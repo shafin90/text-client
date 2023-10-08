@@ -11,6 +11,7 @@ import App from './pages/App/App';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import AuthProvider from './component/AuthProvider/AuthProvider';
+import MessageSection from './component/MessageSection/MessageSection';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage></LoginPage>
+  },
+  {
+    path:"/chat",
+    element: <MessageSection></MessageSection>
   }
 ]);
 

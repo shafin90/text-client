@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
     const [to, setTo] = useState(null)// to whom user send message
     const [messages, setMessages] = useState([]) // All conversation and messages
     const [counter, setCounter] = useState(true)// It containes a boolean value. This will change over the time and keep the message state update tiem to time
-
+    const [messagesToMe, setMessagesToMe] = useState([]) // All the messages that has been send to me
 
 
     // Data fetching,filtering==================================================================================================
@@ -42,16 +42,23 @@ const AuthProvider = ({ children }) => {
     }, [userCollection, setUserCollection, userinfo, setUserInfo])
 
     // changing the value of counter over the time to update the messages state
-    setTimeout(()=>{
+    setTimeout(() => {
         setCounter(!counter);
-    },300)
+    }, 300)
 
     // Fetching all the converation
     useEffect(() => {
         fetch("http://localhost:5000/allMessages")
             .then(res => res.json())
-            .then(data =>setMessages(data))
+            .then(data => setMessages(data))
     }, [counter])
+
+    // Filtering all the messages that has been send to me
+    useEffect(() => {
+        const filteredMessage = messages.filter(e=>(e?.from == loggedInUserInfo?.email || e?.from == to?.email) && (e?.to==loggedInUserInfo?.email || e?.to == to?.email) )
+        setMessagesToMe(filteredMessage)
+    }, [counter, loggedInUserInfo, messages, to])
+
 
     // Function declaration=============================================================================================
 
@@ -107,7 +114,6 @@ const AuthProvider = ({ children }) => {
     }
 
 
-
     // Handle logout functionality
     const handleLogOut = () => {
         const auth = getAuth();
@@ -151,6 +157,8 @@ const AuthProvider = ({ children }) => {
         loggedInUserInfo,
         to,
         setTo,
+        messages,
+        messagesToMe
     }
 
     return (

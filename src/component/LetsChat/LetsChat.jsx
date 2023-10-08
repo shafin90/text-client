@@ -8,7 +8,7 @@ const LetsChat = () => {
 
     return (
         <div className={to==null?" w-full h-full flex justify-center items-center":"hidden"}>
-            <h1 className=" text-gray-900 font-extrabold text-6xl">Let's Chat</h1>
+            <h1 className=" text-gray-900 font-extrabold text-6xl">Lets Chat</h1>
         </div>
     );
 };
