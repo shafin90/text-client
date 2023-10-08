@@ -22,7 +22,7 @@ const FriendList = () => {
                         key={e._id}
                         onClick={event => {
                             setTo(e)
-                            if(screenWidth<576){
+                            if(screenWidth<778){
                                 navigate('/chat')
                             }
                         }}

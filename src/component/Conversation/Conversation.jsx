@@ -6,7 +6,7 @@ const Conversation = () => {
     const { loggedInUserInfo,to, messagesToMe } = useContext(authContext); // retrieveing all the conversation
     
     return (
-        <div className={to==null?' hidden':" w-full h-full px-14 overflow-y-scroll py-11"}>
+        <div className={to==null?' hidden':" w-full h-full px-14 overflow-y-scroll "}>
             {
                 messagesToMe.map(e=><div
                 className={e?.to == loggedInUserInfo?.email?'flex justify-start items-center':'flex justify-end items-center'}

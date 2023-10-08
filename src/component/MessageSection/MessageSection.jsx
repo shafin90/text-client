@@ -12,7 +12,7 @@ const MessageSection = () => {
     const [screenWidth, setScreenWidth] = useState(screen.width); // measure the screen's width
     
     return (
-        <div className= {screenWidth>576?" bg-slate-300 flex flex-col justify-between items-center w-9/12 h-screen":" bg-slate-300 flex flex-col justify-between items-center w-screen h-screen"}>
+        <div className= {screenWidth>778?" bg-slate-300 flex flex-col justify-between items-center w-9/12 h-screen":" bg-slate-300 flex flex-col justify-between items-center w-screen h-screen"}>
             <ProfileAndMenu></ProfileAndMenu>
             <Conversation></Conversation>
             <SendMessage></SendMessage>

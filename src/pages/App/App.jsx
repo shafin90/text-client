@@ -21,7 +21,7 @@ const App = () => {
         navigate('/login');
     }
 
-    if (screenWidth < 576) {
+    if (screenWidth < 778) {
         return (
             <FriendListSection></FriendListSection>
         )
