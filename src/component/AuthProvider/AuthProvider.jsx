@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
     // fetching all user collection
     useEffect(() => {
         // fetching
-        fetch('http://localhost:5000/userInfo')
+        fetch('https://text-server-eyop.vercel.app/userInfo')
             .then(res => res.json())
             .then(data => setUserCollection(data))
     }, [userCollection])
@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
 
     // Fetching all the converation
     useEffect(() => {
-        fetch("http://localhost:5000/allMessages")
+        fetch("https://text-server-eyop.vercel.app/allMessages")
             .then(res => res.json())
             .then(data => setMessages(data))
     }, [counter])
@@ -100,7 +100,7 @@ const AuthProvider = ({ children }) => {
                 const user = userCredential.user;
                 setUserInfo(user);
 
-                fetch('http://localhost:5000/users', {
+                fetch('https://text-server-eyop.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

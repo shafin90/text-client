@@ -12,7 +12,7 @@ const SendMessage = () => {
 
     // send the message
     const sendMessage = () => {
-        fetch('http://localhost:5000/messages', {
+        fetch('https://text-server-eyop.vercel.app/messages', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

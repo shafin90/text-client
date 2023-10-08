@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     // Redirect to the app page as login is done.
     if (userinfo !== null) {
-        navigate('./app')
+        navigate('/app')
     }
     
     console.log(userinfo)
