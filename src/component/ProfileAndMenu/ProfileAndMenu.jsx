@@ -9,10 +9,8 @@ import {
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
-    DrawerCloseButton,
     useDisclosure,
-    Button,
-    Input,
+    Button
 } from '@chakra-ui/react'
 
 const ProfileAndMenu = () => {
@@ -39,7 +37,7 @@ const ProfileAndMenu = () => {
 
                     <DrawerHeader>
                         <h1 className=' text-5xl font-bold mb-2'>{to?.name}</h1>
-                        <h3 className=' text-slate-300 mb-5 text-center'>{to.email}</h3>
+                        <h3 className=' text-slate-300 mb-5 text-center'>{to?.email}</h3>
                     </DrawerHeader>
 
                     <DrawerBody>
@@ -55,10 +53,6 @@ const ProfileAndMenu = () => {
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-
-
-
-
         </div>
 
     );
