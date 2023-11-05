@@ -5,7 +5,7 @@ import { RiSendPlane2Fill } from 'react-icons/ri'
 import { authContext } from '../AuthProvider/AuthProvider';
 
 const SendMessage = () => {
-    const { to, loggedInUserInfo, setSendToBottom } = useContext(authContext); // recieving data from authprovider through context API
+    const { to, loggedInUserInfo, setSendToBottom, sendToBottom } = useContext(authContext); // recieving data from authprovider through context API
 
     // state declaration
     const [text, setText] = useState('');
@@ -24,7 +24,7 @@ const SendMessage = () => {
             .then(data => setText(''))
 
         setTimeout(()=>{
-            setSendToBottom(true)
+            setSendToBottom(!sendToBottom)
         },1000)
     }
 

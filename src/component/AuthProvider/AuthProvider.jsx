@@ -22,10 +22,10 @@ const AuthProvider = ({ children }) => {
     const [messages, setMessages] = useState([]) // All conversation and messages
     const [counter, setCounter] = useState(true)// It containes a boolean value. This will change over the time and keep the message state update tiem to time
     const [messagesToMe, setMessagesToMe] = useState([]) // All the messages that has been send to me
-    const [sendToBottom, setSendToBottom] = useState([false])// contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
+    const [sendToBottom, setSendToBottom] = useState(false)// contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
 
 
-    // making sendToBottom false as it is true now
+    // making sendToBottom false as it is true now============================================================
     if(setSendToBottom){
         setTimeout(()=>{
             setSendToBottom(false)
@@ -165,6 +165,7 @@ const AuthProvider = ({ children }) => {
         handleLogOut,
         userinfo,
         userCollection,
+        setUserCollection,
         loggedInUserInfo,
         to,
         setTo,

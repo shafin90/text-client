@@ -14,7 +14,6 @@ const LoginPage = () => {
         navigate('/app')
     }
     
-    console.log(userinfo)
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
             <div className="bg-gray-100 p-8 rounded shadow-md w-96">
