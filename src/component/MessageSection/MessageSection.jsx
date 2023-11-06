@@ -14,7 +14,7 @@ const MessageSection = () => {
     return (
         <div style={{height:"100vh"}} className= {screenWidth>778?" bg-slate-300 flex flex-col justify-between items-center w-9/12 h-screen":" bg-slate-300 flex flex-col justify-between items-center w-screen h-screen"}>
             <ProfileAndMenu screenWidth={screenWidth} ></ProfileAndMenu>
-            <Conversation></Conversation>
+            <Conversation screenWidth={screenWidth}></Conversation>
             <SendMessage></SendMessage>
             <LetsChat></LetsChat>
 

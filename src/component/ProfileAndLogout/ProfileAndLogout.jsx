@@ -21,7 +21,7 @@ const ProfileAndLogout = () => {
         <div className=' flex justify-between items-center w-10/12 mx-auto  relative bottom-4 '>
             {/* Profile image of loggedIN user and user's name */}
             <div className=' flex justify-between items-center'>
-                <img onClick={onOpen} src={loggedInUserInfo?.img} alt="profile-pic" className=" w-9 h-9 rounded-full  border-2 border-white" />
+                <img onClick={onOpen} src={loggedInUserInfo?.img} alt="profile-pic" className=" w-9 h-9 rounded-full cursor-pointer  border-2 border-white" />
                 <p className=' text-slate-300 ms-3'>{loggedInUserInfo?.name}</p>
             </div>
 
@@ -36,7 +36,7 @@ const ProfileAndLogout = () => {
                 <ModalContent className=" bg-gray-700 text-slate-300 w-screen h-screen flex justify-center items-center">
                     
                     
-                    <ModalBody>
+                    <ModalBody className=' flex flex-col justify-center items-center'>
                         <h1 className=' text-4xl font-bold text-center'>{loggedInUserInfo?.name}</h1>
                         <h2 className=' text-xl font-semibold text-center mb-3'>{loggedInUserInfo?.email}</h2>
                         <img src={loggedInUserInfo?.img} className=' w-40 h-40 rounded-full border-4 border-slate-300 ' alt="" />
