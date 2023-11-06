@@ -17,8 +17,6 @@ const MessageSection = () => {
             <Conversation screenWidth={screenWidth}></Conversation>
             <SendMessage></SendMessage>
             <LetsChat></LetsChat>
-
-
         </div>
     );
 };
