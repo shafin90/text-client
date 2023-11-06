@@ -38,7 +38,7 @@ const SendMessage = () => {
             }
         }
     return (
-        <div style={{height:"20vh"}} className={to == null ? ' hidden' : 'flex justify-center items-center w-full  h-24'}>
+        <div  className={to == null ? ' hidden' : 'flex justify-center items-center w-full  h-24'}>
             <input   onKeyPress={handleKeyPress} onChange={e => setText(e.target.value)} type="text" value={text} placeholder="Enter your message" className="rounded-md py-2 px-4 border w-8/12 border-gray-300 focus:outline-none" />
             <RiSendPlane2Fill onClick={sendMessage} className=' text-2xl ms-2 cursor-pointer'></RiSendPlane2Fill>
         </div>

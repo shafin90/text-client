@@ -12,7 +12,7 @@ const Conversation = ({screenWidth}) => {
         }
     }, [sendToBottom, counter]);
     return (
-        <div style={{height:"60vh",paddingLeft:`${screenWidth<778&&"15px"}`,paddingRight:`${screenWidth<778&&"15px"}`}} className={to == null ? 'hidden' : "w-full h-full px-14 overflow-y-scroll bottom-0"} ref={conversationContainerRef}>
+        <div style={{paddingLeft:`${screenWidth<778&&"15px"}`,paddingRight:`${screenWidth<778&&"15px"}`}} className={to == null ? 'hidden' : "w-full h-full px-14 overflow-y-scroll bottom-0"} ref={conversationContainerRef}>
             {
                 messagesToMe.map(e => <div
                     className={e?.to == loggedInUserInfo?.email ? 'flex justify-start items-center' : 'flex justify-end items-center'}

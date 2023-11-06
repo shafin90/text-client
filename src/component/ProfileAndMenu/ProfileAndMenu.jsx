@@ -19,7 +19,7 @@ const ProfileAndMenu = ({ screenWidth }) => {
     const btnRef = React.useRef()
 
     return (
-        <div style={{ height: "20vh", paddingLeft:`${screenWidth<778&&"15px"}`,paddingRight:`${screenWidth<778&&"15px"}` }} className={to == null ? ' hidden' : ` flex justify-between items-center w-full h-24 px-10`}>
+        <div style={{ paddingLeft:`${screenWidth<778&&"15px"}`,paddingRight:`${screenWidth<778&&"15px"}` }} className={to == null ? ' hidden' : ` flex justify-between items-center w-full h-24 px-10`}>
             <div className=' flex justify-between items-center'>
                 <img src={to?.img} alt="profile" className="rounded-full border-2 border-black w-9 h-9" />
                 <p className={screenWidth > 778 ? 'ms-3 font-bold' : 'hidden'}>{to?.name}</p>
