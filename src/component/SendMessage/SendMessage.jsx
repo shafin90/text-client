@@ -21,11 +21,14 @@ const SendMessage = () => {
             body: JSON.stringify({ from: loggedInUserInfo.email, to: to.email, message: text })
         })
             .then(res => res.json())
-            .then(data => setText(''))
+            .then(data => {
+                setText('')
+                setSendToBottom(!sendToBottom)
+            })
 
-        setTimeout(()=>{
-            setSendToBottom(!sendToBottom)
-        },1000)
+        // setTimeout(()=>{
+            
+        // },1000)
     }
 
         // Handle Enter key press

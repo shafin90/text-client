@@ -23,16 +23,8 @@ const AuthProvider = ({ children }) => {
     const [counter, setCounter] = useState(true)// It containes a boolean value. This will change over the time and keep the message state update tiem to time
     const [messagesToMe, setMessagesToMe] = useState([]) // All the messages that has been send to me
     const [sendToBottom, setSendToBottom] = useState(false)// contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
-
-
-    // making sendToBottom false as it is true now============================================================
-    if(setSendToBottom){
-        setTimeout(()=>{
-            setSendToBottom(false)
-        },1200)
-    }
-
-
+    const [searchInput, setSearchInput] = useState('') // contains the input value of search bar
+    
 
 
     // Data fetching,filtering==================================================================================================
@@ -68,7 +60,9 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const filteredMessage = messages.filter(e => (e?.from == loggedInUserInfo?.email || e?.from == to?.email) && (e?.to == loggedInUserInfo?.email || e?.to == to?.email))
         setMessagesToMe(filteredMessage)
-    }, [counter, loggedInUserInfo, messages, to])
+        setSendToBottom(!sendToBottom)
+    }, [counter])
+    // , loggedInUserInfo, messages, to, sendToBottom, setMessagesToMe, setSendToBottom 
 
 
     // Function declaration=============================================================================================
@@ -172,7 +166,9 @@ const AuthProvider = ({ children }) => {
         messages,
         messagesToMe,
         setSendToBottom,
-        sendToBottom
+        sendToBottom,
+        searchInput, 
+        setSearchInput
     }
 
     return (
