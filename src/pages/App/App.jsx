@@ -5,6 +5,7 @@ import FriendListSection from "../../component/FriendListSection/FriendListSecti
 import MessageSection from "../../component/MessageSection/MessageSection";
 import { authContext } from "../../component/AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import WelcomePage from "../WelcomePage/WelcomePage";
 
 
 const App = () => {
@@ -28,9 +29,10 @@ const App = () => {
     }
     else {
         return (
-            <div className=" flex justify-between items-center">
+            <div style={{ zIndex:0}} className=" flex justify-between items-center relative">
                 <FriendListSection></FriendListSection>
                 <MessageSection></MessageSection>
+                <WelcomePage></WelcomePage>
 
             </div>
         );

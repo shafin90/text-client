@@ -14,10 +14,10 @@ import AuthProvider from './component/AuthProvider/AuthProvider';
 import MessageSection from './component/MessageSection/MessageSection';
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <WelcomePage></WelcomePage>,
-  },
+  // {
+  //   path: "/",
+  //   element: <WelcomePage></WelcomePage>,
+  // },
   {
     path: '/app',
     element: <App></App>
