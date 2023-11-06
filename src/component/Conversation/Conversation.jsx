@@ -3,19 +3,16 @@ import { authContext } from "../AuthProvider/AuthProvider";
 
 
 const Conversation = () => {
-    const { loggedInUserInfo, to, messagesToMe, sendToBottom } = useContext(authContext); // retrieveing all the conversation
+    const { loggedInUserInfo, to, messagesToMe, sendToBottom, counter } = useContext(authContext); // retrieveing all the conversation
     const conversationContainerRef = useRef(null);
 
     useEffect(() => {
         if (sendToBottom) {
-            // Scroll to the bottom of the conversation container
-            if (conversationContainerRef.current) {
-                conversationContainerRef.current.scrollTop = conversationContainerRef.current.scrollHeight;
-            }
+            conversationContainerRef.current.scrollTop = conversationContainerRef.current.scrollHeight;
         }
-    }, [sendToBottom]);
+    }, [sendToBottom, counter]);
     return (
-        <div className={to == null ? ' hidden' : " w-full h-full px-14 overflow-y-scroll "} ref={conversationContainerRef}>
+        <div style={{height:"60vh"}} className={to == null ? 'hidden' : "w-full h-full px-14 overflow-y-scroll bottom-0"} ref={conversationContainerRef}>
             {
                 messagesToMe.map(e => <div
                     className={e?.to == loggedInUserInfo?.email ? 'flex justify-start items-center' : 'flex justify-end items-center'}

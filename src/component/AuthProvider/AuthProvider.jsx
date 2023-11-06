@@ -22,10 +22,10 @@ const AuthProvider = ({ children }) => {
     const [messages, setMessages] = useState([]) // All conversation and messages
     const [counter, setCounter] = useState(true)// It containes a boolean value. This will change over the time and keep the message state update tiem to time
     const [messagesToMe, setMessagesToMe] = useState([]) // All the messages that has been send to me
-    const [sendToBottom, setSendToBottom] = useState(false)// contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
+    const [sendToBottom, setSendToBottom] = useState(true) // contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
+    const [isSendMessage, setIsSendMessage] = useState(true);
     const [searchInput, setSearchInput] = useState('') // contains the input value of search bar
     
-
 
     // Data fetching,filtering==================================================================================================
 
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
         // fetching
         fetch('https://text-server-eyop.vercel.app/userInfo')
             .then(res => res.json())
-            .then(data => setUserCollection(data))
+            .then(data => setUserCollection(data) )
     }, [userCollection])
 
 
@@ -60,7 +60,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const filteredMessage = messages.filter(e => (e?.from == loggedInUserInfo?.email || e?.from == to?.email) && (e?.to == loggedInUserInfo?.email || e?.to == to?.email))
         setMessagesToMe(filteredMessage)
-        setSendToBottom(!sendToBottom)
     }, [counter])
     // , loggedInUserInfo, messages, to, sendToBottom, setMessagesToMe, setSendToBottom 
 
@@ -118,7 +117,6 @@ const AuthProvider = ({ children }) => {
             });
     }
 
-
     // Handle logout functionality
     const handleLogOut = () => {
         const auth = getAuth();
@@ -144,7 +142,6 @@ const AuthProvider = ({ children }) => {
         }
     }, []);
 
-
     // Passing data to different different component===================================================================
     const passedValue = {
         setName,
@@ -168,7 +165,10 @@ const AuthProvider = ({ children }) => {
         setSendToBottom,
         sendToBottom,
         searchInput, 
-        setSearchInput
+        setSearchInput,
+        isSendMessage,
+        setIsSendMessage,
+        counter
     }
 
     return (
