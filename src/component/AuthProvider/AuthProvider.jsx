@@ -85,7 +85,6 @@ const AuthProvider = ({ children }) => {
     };
 
 
-
     // handle google sign in functionality
     const handleGoogle = (e) => {
         e.preventDefault();
@@ -106,7 +105,7 @@ const AuthProvider = ({ children }) => {
                 })
 
             }).catch((error) => {
-                console.log("something wrong. Try again.")
+                console.log(error.messages)
             });
     }
 
