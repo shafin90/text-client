@@ -1,0 +1,16 @@
+.friendList {
+    /* Hide native scrollbar */
+    overflow-y: scroll;
+    /* scrollbar-width: 6px; */
+}
+
+/* Custom scrollbar using Webkit pseudo-elements */
+.friendList::-webkit-scrollbar {
+    width: 5px;
+    background-color: #1f2937;
+}
+
+.friendList::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}

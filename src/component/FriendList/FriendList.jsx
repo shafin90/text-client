@@ -3,7 +3,7 @@
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../AuthProvider/AuthProvider";
 import { useNavigate } from "react-router-dom";
-
+import './FriendList.css'
 
 const FriendList = () => {
     const {setUserCollection, userCollection, setTo, searchInput } = useContext(authContext); // getting all user's information from authprovider through context API
@@ -12,9 +12,7 @@ const FriendList = () => {
     const [screenWidth, setScreenWidth] = useState(screen.width);
     const [temporaryList, setTemporaryList] = useState([])
     
-
     const navigate = useNavigate();
-
 
     useEffect(() => {
         if (searchInput !== null) {
@@ -25,7 +23,7 @@ const FriendList = () => {
     }, [userCollection, setUserCollection, searchInput])
 
     return (
-        <div className=" w-full h-5/6 overflow-y-scroll mt-8">
+        <div  style={{height:"80%"}} className="friendList w-full overflow-y-scroll mt-8 ">
             <ul className=" ps-8">
                 {
                     searchInput.length !== 0 ?

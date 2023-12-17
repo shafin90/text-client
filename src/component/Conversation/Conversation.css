@@ -1,0 +1,16 @@
+.conversation {
+    /* Hide native scrollbar */
+    overflow-y: scroll;
+    /* scrollbar-width: 6px; */
+}
+
+/* Custom scrollbar using Webkit pseudo-elements */
+.conversation::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(203 213 225);
+}
+
+.conversation::-webkit-scrollbar-thumb {
+    background-color: rgb(77, 74, 74);
+    border-radius: 4px;
+}

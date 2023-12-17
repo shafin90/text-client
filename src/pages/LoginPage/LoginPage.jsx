@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const LoginPage = () => {
-    const { setEmail, setPassword, handleLogin, handleGoogle, userinfo } = useContext(authContext);
+    const { setEmail, setPassword, handleLogin, handleGoogle, userinfo, registrationError } = useContext(authContext);
 
     // Initialize the useNavigation Hook.
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ const LoginPage = () => {
     if (userinfo !== null) {
         navigate('/')
     }
-    
+
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
             <div className="bg-gray-100 p-8 rounded shadow-md w-96">
@@ -27,6 +27,7 @@ const LoginPage = () => {
                             onChange={e => setEmail(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='abc@gmail.com'
                         />
                     </div>
                     <div className="mb-4">
@@ -37,8 +38,14 @@ const LoginPage = () => {
                             onChange={e => setPassword(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='******'
                         />
                     </div>
+
+                    <p className={registrationError ? " text-sm text-red-900" : " hidden"}>
+                        having some issues. Try again
+                    </p>
+
                     <div className="mt-6">
                         <button
                             type="submit"

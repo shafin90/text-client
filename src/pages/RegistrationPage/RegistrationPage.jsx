@@ -1,17 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const RegistrationPage = () => {
-    const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration, userinfo } = useContext(authContext);
+    const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration, userinfo, counter, notifyError, notifyLengthError, registrationError } = useContext(authContext);
 
     const navigate = useNavigate(); // Initialize the useNavigate hook
 
-    // Navigate user to application page when registration is done
-    if (userinfo !== null) {
-        navigate('./app');
-    }
+  
+    
+console.log(userinfo)
+    useEffect(() => {
+        
+        // Navigate user to application page when registration is done
+        if (userinfo !== null) {
+            navigate('/');
+        }
 
+    }, [counter])
 
 
     return (
@@ -27,6 +33,7 @@ const RegistrationPage = () => {
                             onChange={e => setName(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='first name'
                         />
                     </div>
                     <div className="mb-4">
@@ -37,6 +44,7 @@ const RegistrationPage = () => {
                             onChange={e => setNumber(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='01*********'
                         />
                     </div>
                     <div className="mb-4">
@@ -47,6 +55,7 @@ const RegistrationPage = () => {
                             onChange={e => setEmail(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='abc@gmail.com'
                         />
                     </div>
                     <div className="mb-4">
@@ -57,6 +66,8 @@ const RegistrationPage = () => {
                             onChange={e => setPassword(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='must be at least 6 digits'
+
                         />
                     </div>
                     <div className="mb-4">
@@ -67,6 +78,7 @@ const RegistrationPage = () => {
                             onChange={e => setConfirmPassword(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
                             required
+                            placeholder='must be at least 6 digits'
                         />
                     </div>
                     <div className="mb-4">
@@ -76,9 +88,21 @@ const RegistrationPage = () => {
                             name="image"
                             onChange={e => setImg(e.target.value)}
                             className="w-full border border-gray-300 rounded px-3 py-2"
+                            placeholder="provide image's url"
                         />
 
                     </div>
+                    <p className={notifyError ? " text-sm text-red-900" : " hidden"}>
+                        Password doesnt match
+                    </p>
+
+                    <p className={notifyLengthError ? " text-sm text-red-900" : " hidden"}>
+                        Password length cannot be less than 6
+                    </p>
+
+                    <p className={registrationError ? " text-sm text-red-900" : " hidden"}>
+                        having some issues. Try again
+                    </p>
                     <div className="mt-6">
                         <button
                             type="submit"
@@ -88,7 +112,7 @@ const RegistrationPage = () => {
                         </button>
                     </div>
                 </form>
-                <p className=' mt-3 text-sm'>Already have an account? <Link className=' text-gray-800 font-bold' to='/registration'>Login</Link></p>
+                <p className=' mt-3 text-sm'>Already have an account? <Link className=' text-gray-800 font-bold' to='/login'>Login</Link></p>
             </div>
 
         </div>

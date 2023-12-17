@@ -25,7 +25,10 @@ const AuthProvider = ({ children }) => {
     const [sendToBottom, setSendToBottom] = useState(true) // contains boolean value. When user send a message, it bacomes true. after 2 sec, it becoms, false. when user send message, then the whole div jump to the bottom so that last message can be seen.
     const [isSendMessage, setIsSendMessage] = useState(true);
     const [searchInput, setSearchInput] = useState('') // contains the input value of search bar
-    
+    const [notifyError, setNotifyError] = useState(false) // when password and confirm password doesnt match it becomes true
+    const [notifyLengthError, setNotifyLengthError] = useState(false) // when password length is less than 6 than it becomes true
+    const [registrationError, setRegistrationError] = useState(false) // when error occurs during registration, then it becomes true
+
 
     // Data fetching,filtering==================================================================================================
 
@@ -34,7 +37,7 @@ const AuthProvider = ({ children }) => {
         // fetching
         fetch('https://text-server-eyop.vercel.app/userInfo')
             .then(res => res.json())
-            .then(data => setUserCollection(data) )
+            .then(data => setUserCollection(data))
     }, [userCollection])
 
 
@@ -63,7 +66,6 @@ const AuthProvider = ({ children }) => {
     }, [counter])
     // , loggedInUserInfo, messages, to, sendToBottom, setMessagesToMe, setSendToBottom 
 
-
     // Function declaration=============================================================================================
 
     // handle login functionality
@@ -75,10 +77,14 @@ const AuthProvider = ({ children }) => {
                 setUserInfo(user);
             })
             .catch((error) => {
-                console.log('something is wrong. try again')
+                setRegistrationError(true)
+                setTimeout(() => {
+                    setNotifyLengthError(false)
+                }, 2000)
             });
-
     };
+
+    console.log(userinfo)
 
     // handle google sign in functionality
     const handleGoogle = (e) => {
@@ -90,6 +96,14 @@ const AuthProvider = ({ children }) => {
                 const token = credential.accessToken;
                 const user = result.user;
                 setUserInfo(user);
+                
+                fetch('https://text-server-eyop.vercel.app/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: user?.displayName, email: user?.email, password, img:user?.photoURL, number:"signed-in by google" })
+                })
 
             }).catch((error) => {
                 console.log("something wrong. Try again.")
@@ -99,22 +113,42 @@ const AuthProvider = ({ children }) => {
     // Handle create account/registration functionality
     const handleRegistration = (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                setUserInfo(user);
 
-                fetch('https://text-server-eyop.vercel.app/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ name, email, password, img, number })
+        // Check if password and confirmPassword same or not 
+        if (password !== confirmPassword) {
+            setNotifyError(true)
+            setTimeout(() => {
+                setNotifyError(false)
+            }, 2000)
+        }
+        else if (password.length < 6) {
+            setNotifyLengthError(true)
+            setTimeout(() => {
+                setNotifyLengthError(false)
+            }, 2000)
+        }
+        else {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    setUserInfo(user);
+
+                    fetch('https://text-server-eyop.vercel.app/users', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({ name, email, password, img, number })
+                    })
                 })
-            })
-            .catch((error) => {
-                console.log("something is wrong, try again")
-            });
+                .catch((error) => {
+                    setRegistrationError(true)
+                    setTimeout(() => {
+                        setNotifyLengthError(false)
+                    }, 2000)
+                });
+
+        }
     }
 
     // Handle logout functionality
@@ -127,7 +161,6 @@ const AuthProvider = ({ children }) => {
         }).catch((error) => {
             console.log('logout cancel');
         });
-
     }
     // ====================================================================================================================
 
@@ -164,11 +197,14 @@ const AuthProvider = ({ children }) => {
         messagesToMe,
         setSendToBottom,
         sendToBottom,
-        searchInput, 
+        searchInput,
         setSearchInput,
         isSendMessage,
         setIsSendMessage,
-        counter
+        counter,
+        notifyError,
+        notifyLengthError,
+        registrationError
     }
 
     return (
