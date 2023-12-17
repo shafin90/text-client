@@ -6,13 +6,13 @@ import ProfileAndMenu from "../ProfileAndMenu/ProfileAndMenu";
 import SendMessage from "../SendMessage/SendMessage";
 import LetsChat from "../LetsChat/LetsChat";
 import { useState } from "react";
-
+import './MessageSection.css'
 
 const MessageSection = () => {
     const [screenWidth, setScreenWidth] = useState(screen.width); // measure the screen's width
     
     return (
-        <div style={{height:"100vh"}} className= {screenWidth>778?" bg-slate-300 flex flex-col justify-between items-center w-9/12 ":" bg-slate-300 flex flex-col justify-between items-center w-screen "}>
+        <div className= {screenWidth>778?" messageSection bg-slate-300 flex flex-col justify-between items-center w-9/12 ":"messageSection bg-slate-300 flex flex-col justify-between items-center w-screen "}>
             <ProfileAndMenu screenWidth={screenWidth} ></ProfileAndMenu>
             <Conversation screenWidth={screenWidth}></Conversation>
             <SendMessage></SendMessage>
