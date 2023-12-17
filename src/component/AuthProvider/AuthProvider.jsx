@@ -105,7 +105,7 @@ const AuthProvider = ({ children }) => {
                 })
 
             }).catch((error) => {
-                console.log(error.messages)
+                console.log(error)
             });
     }
 
