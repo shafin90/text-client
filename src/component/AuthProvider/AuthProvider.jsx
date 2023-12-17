@@ -84,7 +84,7 @@ const AuthProvider = ({ children }) => {
             });
     };
 
-    console.log(userinfo)
+
 
     // handle google sign in functionality
     const handleGoogle = (e) => {
