@@ -95,9 +95,9 @@ const AuthProvider = ({ children }) => {
                 const token = credential.accessToken;
                 const user = result.user;
                 setUserInfo(user);
-                
+
                 fetch('https://text-server-eyop.vercel.app/users', {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
                     },
