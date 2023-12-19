@@ -28,7 +28,7 @@ const Conversation = ({ screenWidth }) => {
                         {e?.message}
                         
                     </p>
-                    <p style={{fontSize:"8px"}} className=" ms-1 text-slate-400">
+                    <p style={{fontSize:"8px"}} className=" ms-1 text-slate-500">
                         {e?.time}
                     </p>
 

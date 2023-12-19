@@ -20,12 +20,11 @@ const SendMessage = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ from: loggedInUserInfo.email, to: to.email, message: text, time: `${currentTime.getHours}:${currentTime.getMinutes}` })
+            body: JSON.stringify({ from: loggedInUserInfo.email, to: to.email, message: text, time: `${currentTime.getHours()}:${currentTime.getMinutes()}` })
         })
             .then(res => res.json())
             .then(data => {
                 setText('')
-
             })
 
         // setTimeout(()=>{
