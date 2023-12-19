@@ -84,30 +84,29 @@ const AuthProvider = ({ children }) => {
             });
     };
 
-
     // handle google sign in functionality
-    const handleGoogle = (e) => {
-        e.preventDefault();
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                setUserInfo(user);
+    // const handleGoogle = (e) => {
+    //     e.preventDefault();
+    //     signInWithPopup(auth, provider)
+    //         .then((result) => {
+    //             // This gives you a Google Access Token. You can use it to access the Google API.
+    //             const credential = GoogleAuthProvider.credentialFromResult(result);
+    //             const token = credential.accessToken;
+    //             const user = result.user;
+    //             setUserInfo(user);
 
-                fetch('https://text-server-eyop.vercel.app/users', {
-                    method: 'PUT',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ name: user?.displayName, email: user?.email, password, img:user?.photoURL, number:"signed-in by google" })
-                })
+    //             fetch('https://text-server-eyop.vercel.app/users', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'content-type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({ name: user?.displayName, email: user?.email, password, img: user?.photoURL, number: "signed-in by google" })
+    //             })
 
-            }).catch((error) => {
-                console.log(error)
-            });
-    }
+    //         }).catch((error) => {
+    //             console.log(error)
+    //         });
+    // }
 
     // Handle create account/registration functionality
     const handleRegistration = (e) => {
@@ -183,7 +182,7 @@ const AuthProvider = ({ children }) => {
         setEmail,
         setPassword,
         handleLogin,
-        handleGoogle,
+        // handleGoogle,
         handleRegistration,
         handleLogOut,
         userinfo,

@@ -55,7 +55,7 @@ const LoginPage = () => {
                         </button>
                     </div>
                 </form>
-                <div className="mt-4">
+                {/* <div className="mt-4">
                     <button
 
                         onClick={handleGoogle}
@@ -65,7 +65,7 @@ const LoginPage = () => {
                         <AiOutlineGoogle className=' text-2xl me-2'></AiOutlineGoogle>
                         Sign in with Google
                     </button>
-                </div>
+                </div> */}
                 <p className=' mt-3 text-sm'>Dont have an account? <Link className=' text-gray-800 font-bold' to='/registration'>Registration</Link></p>
             </div>
         </div>
