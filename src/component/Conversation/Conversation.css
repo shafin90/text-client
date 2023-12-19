@@ -11,6 +11,7 @@
 }
 
 .conversation::-webkit-scrollbar-thumb {
-    background-color: rgb(77, 74, 74);
+    background-color: #1f2937;
     border-radius: 4px;
 }
+
