@@ -3,22 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
 
 const RegistrationPage = () => {
-    const { setName, setEmail, setPassword, setConfirmPassword, setImg, setNumber, handleRegistration, userinfo, counter, notifyError, notifyLengthError, registrationError } = useContext(authContext);
+    const { setProfileImg, setName, setEmail, setPassword, setConfirmPassword, setNumber, handleRegistration, userinfo, counter, notifyError, notifyLengthError, registrationError } = useContext(authContext);
 
     const navigate = useNavigate(); // Initialize the useNavigate hook
-
-  
     
-console.log(userinfo)
     useEffect(() => {
-        
         // Navigate user to application page when registration is done
         if (userinfo !== null) {
             navigate('/');
         }
-
     }, [counter])
 
+    const handleFile = event => {
+        setProfileImg(
+            URL.createObjectURL(event.target.files[0])
+        );
+    };
 
     return (
         <div className="bg-gray-300 min-h-screen flex items-center justify-center">
@@ -82,13 +82,13 @@ console.log(userinfo)
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-semibold">PhotoURL:</label>
+                        <label className="block text-gray-700 font-semibold">Upload Image</label>
                         <input
-                            type="text"
+                            type="file"
                             name="image"
-                            onChange={e => setImg(e.target.value)}
-                            className="w-full border border-gray-300 rounded px-3 py-2"
-                            placeholder="provide image's url"
+                            required="required"
+                            onChange={handleFile}
+
                         />
 
                     </div>

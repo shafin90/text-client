@@ -13,7 +13,6 @@ const AuthProvider = ({ children }) => {
     const [email, setEmail] = useState(''); // user's email
     const [password, setPassword] = useState(''); // user's given password
     const [confirmPassword, setConfirmPassword] = useState(''); // user's given confirm password
-    const [img, setImg] = useState(''); // user's profile image
     const [name, setName] = useState(''); // user's name
     const [number, setNumber] = useState(null); // user's phone number
     const [loggedInUserInfo, setLoggedInUserInfo] = useState(null) // store loggedInUser's informartion
@@ -28,7 +27,7 @@ const AuthProvider = ({ children }) => {
     const [notifyError, setNotifyError] = useState(false) // when password and confirm password doesnt match it becomes true
     const [notifyLengthError, setNotifyLengthError] = useState(false) // when password length is less than 6 than it becomes true
     const [registrationError, setRegistrationError] = useState(false) // when error occurs during registration, then it becomes true
-
+    const [profileImg, setProfileImg] = useState([]); // profile picture of user
 
     // Data fetching,filtering==================================================================================================
 
@@ -136,7 +135,7 @@ const AuthProvider = ({ children }) => {
                         headers: {
                             'content-type': 'application/json'
                         },
-                        body: JSON.stringify({ name, email, password, img, number })
+                        body: JSON.stringify({ name, email, password,img:profileImg, number })
                     })
                 })
                 .catch((error) => {
@@ -177,12 +176,10 @@ const AuthProvider = ({ children }) => {
     const passedValue = {
         setName,
         setNumber,
-        setImg,
         setConfirmPassword,
         setEmail,
         setPassword,
         handleLogin,
-        // handleGoogle,
         handleRegistration,
         handleLogOut,
         userinfo,
@@ -202,7 +199,9 @@ const AuthProvider = ({ children }) => {
         counter,
         notifyError,
         notifyLengthError,
-        registrationError
+        registrationError, 
+        setProfileImg, 
+        profileImg
     }
 
     return (

@@ -1,16 +1,20 @@
 // This component contain input field to send message
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import { authContext } from '../AuthProvider/AuthProvider';
 
 const SendMessage = () => {
-    const { to, loggedInUserInfo } = useContext(authContext); // recieving data from authprovider through context API
+    const { to, loggedInUserInfo, counter } = useContext(authContext); // recieving data from authprovider through context API
 
     // state declaration
     const [text, setText] = useState('');
 
-    const [currentTime, setCurrentTime] = useState(new Date());
+    const [currentTime, setCurrentTime] = useState(null);
+
+    useEffect(() => {
+        setCurrentTime(new Date())
+    }, [counter])
 
     // send the message
     const sendMessage = () => {
@@ -27,9 +31,6 @@ const SendMessage = () => {
                 setText('')
             })
 
-        // setTimeout(()=>{
-
-        // },1000)
     }
 
     // Handle Enter key press
