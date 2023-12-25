@@ -19,7 +19,7 @@ const RegistrationPage = () => {
         setFile(
             URL.createObjectURL(event.target.files[0])
         );
-
+        
         try {
             const formData = new FormData();
             formData.append('file', file);
@@ -34,7 +34,8 @@ const RegistrationPage = () => {
           } catch (error) {
             console.error('Error uploading image:', error);
           }
-        };
+        
+
     };
 
     return (
