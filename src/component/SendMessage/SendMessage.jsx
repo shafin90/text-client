@@ -12,8 +12,8 @@ const SendMessage = () => {
     // state declaration
     const [text, setText] = useState('');
     const [img, setImg] = useState(null); // send image while texting
-
-    const [currentTime, setCurrentTime] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null); // url of that image 
+    const [currentTime, setCurrentTime] = useState(null); // time of when tha message of send
 
     useEffect(() => {
         setCurrentTime(new Date())
@@ -21,10 +21,27 @@ const SendMessage = () => {
 
 
     // handle image uploading
-    const handleImageUpload=(event)=>{
+    const handleImageUpload= async (event)=>{
         setImg(
             URL.createObjectURL(event.target.files[0])
         );
+
+
+
+        try {
+            const formData = new FormData();
+            formData.append('file', img);
+      
+            // Replace 'YOUR_GCS_UPLOAD_ENDPOINT' with the actual endpoint for uploading to Google Cloud Storage
+            const response = await axios.post('YOUR_GCS_UPLOAD_ENDPOINT', formData);
+      
+            // Assuming the response includes the public URL of the uploaded image
+            setImageUrl(response.data.publicUrl);
+      
+            console.log('Image uploaded successfully. URL:', response.data.publicUrl);
+          } catch (error) {
+            console.error('Error uploading image:', error);
+          }
     }
 
     // send the message
@@ -35,7 +52,7 @@ const SendMessage = () => {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({  from: loggedInUserInfo.email, to: to.email, message: text, time: `${currentTime.getHours()}:${currentTime.getMinutes()}`, img: img })
+            body: JSON.stringify({  from: loggedInUserInfo.email, to: to.email, message: text, time: `${currentTime.getHours()}:${currentTime.getMinutes()}`, img: imageUrl })
         })
             .then(res => res.json())
             .then(data => {

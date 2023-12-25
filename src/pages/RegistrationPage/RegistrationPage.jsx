@@ -6,7 +6,8 @@ const RegistrationPage = () => {
     const { setProfileImg, setName, setEmail, setPassword, setConfirmPassword, setNumber, handleRegistration, userinfo, counter, notifyError, notifyLengthError, registrationError } = useContext(authContext);
 
     const navigate = useNavigate(); // Initialize the useNavigate hook
-    
+    const [file, setFile] = useState(null);
+
     useEffect(() => {
         // Navigate user to application page when registration is done
         if (userinfo !== null) {
@@ -14,10 +15,26 @@ const RegistrationPage = () => {
         }
     }, [counter])
 
-    const handleFile = event => {
-        setProfileImg(
+    const handleFile = async event => {
+        setFile(
             URL.createObjectURL(event.target.files[0])
         );
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+      
+            // Replace 'YOUR_GCS_UPLOAD_ENDPOINT' with the actual endpoint for uploading to Google Cloud Storage
+            const response = await axios.post('YOUR_GCS_UPLOAD_ENDPOINT', formData);
+      
+            // Assuming the response includes the public URL of the uploaded image
+            setProfileImg(response.data.publicUrl);
+      
+            console.log('Image uploaded successfully. URL:', response.data.publicUrl);
+          } catch (error) {
+            console.error('Error uploading image:', error);
+          }
+        };
     };
 
     return (
