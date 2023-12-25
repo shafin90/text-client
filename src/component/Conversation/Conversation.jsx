@@ -8,7 +8,7 @@ const Conversation = ({ screenWidth }) => {
     const conversationContainerRef = useRef(null);
 
 
-    
+
 
     useEffect(() => {
         if (sendToBottom) {
@@ -23,14 +23,20 @@ const Conversation = ({ screenWidth }) => {
 
                 >
 
-                    <p className={e?.to == loggedInUserInfo?.email ? " mb-3 px-3 py-1 text-sm bg-slate-100  text-gray-800 rounded-full inline-block " : " mb-3 px-3 py-1 text-sm bg-gray-800 text-slate-300 rounded-full inline-block "}
-                    >
-                        {e?.message}
-                        
-                    </p>
-                    <p style={{fontSize:"8px"}} className=" ms-1 text-slate-500">
-                        {e?.time}
-                    </p>
+                    <div className=" flex flex-col justify-between items-center">
+
+                        <img className={e.img === null ? "hidden" : 'rounded-md w-44 h-40 block mb-2'} src={e.img} alt="" />
+
+                        <p className={e?.to == loggedInUserInfo?.email ? " mb-3 px-3 py-1 text-sm bg-slate-100  text-gray-800 rounded-full inline-block " : " mb-3 px-3 py-1 text-sm bg-gray-800 text-slate-300 rounded-full inline-block "}
+                        >
+                            {e?.message}
+
+                        </p>
+                        <p style={{ fontSize: "8px" }} className=" ms-1 text-slate-500">
+                            {e?.time}
+                        </p>
+
+                    </div>
 
                 </div>)
             }
