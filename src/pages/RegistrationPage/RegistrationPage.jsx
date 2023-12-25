@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../../component/AuthProvider/AuthProvider';
+import axios from 'axios';
 
 const RegistrationPage = () => {
     const { setProfileImg, setName, setEmail, setPassword, setConfirmPassword, setNumber, handleRegistration, userinfo, counter, notifyError, notifyLengthError, registrationError } = useContext(authContext);

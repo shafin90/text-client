@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { RiSendPlane2Fill } from 'react-icons/ri'
 import { authContext } from '../AuthProvider/AuthProvider';
 import { FaImage } from "react-icons/fa6";
-
+import axios from 'axios';
 
 const SendMessage = () => {
     const { to, loggedInUserInfo, counter } = useContext(authContext); // recieving data from authprovider through context API
